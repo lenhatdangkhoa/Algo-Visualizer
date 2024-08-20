@@ -1,24 +1,13 @@
 "use client"
 import { useState } from "react";
+import BubbleSort from "@/util/BubbleSort";
+
 export default function Array() {
     const [arr, setArr] = useState([10,9,8,7,6,5,4,3,2,1,23,5,42,3,10,65,44,33])
     const [color, setColor] = useState(-1)
     const [color2, setColor2] = useState(-1)
     const handleSortClick = async () => {
-        let newArr = [...arr]
-        for (let i = 0; i < newArr.length; i++) {
-            for (let j = i + 1; j < newArr.length; j++) {
-                if (newArr[i] > newArr[j]) {
-                    const temp = newArr[j]
-                    newArr[j] = newArr[i]
-                    newArr[i] = temp
-                    await new Promise((resolve) => setTimeout(resolve, 50)); // Delay of 500ms
-                    setColor(i)
-                    setColor2(j)
-                    setArr([...newArr]); // Update state after each addition
-                }
-            }
-        }
+        BubbleSort(arr, setColor, setColor2, setArr)
     }
     const handleShuffleClick = () => {
         let newArr = []
